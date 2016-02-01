@@ -1,0 +1,43 @@
+# Created by https://www.gitignore.io/api/c++,c,python,node
+
+### C / C++ ###
+# Compiled Object files
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Executables
+*.exe
+*.out
+
+# Debug files
+*.dSYM/
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+
+### Mac ###
+.DS_Store
