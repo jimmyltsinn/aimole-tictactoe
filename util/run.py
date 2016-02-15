@@ -14,16 +14,16 @@ print sys.argv
 
 verdictPath = sys.argv[1]
 playerPath = sys.argv[2:]
-playerNumer = len(playerPath)
+playerNumber = len(playerPath)
 
 print 'Verdict: %s' % verdictPath
-print 'Number of player: %d' % playerNumer
+print 'Number of player: %d' % playerNumber
 print 'Players: %s' % str(playerPath)
 
 verdict = subprocess.Popen(['python', '-u', os.path.abspath(verdictPath)],
                            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 players = []
-for i in xrange(0, playerNumer):
+for i in xrange(0, playerNumber):
     players.append(subprocess.Popen(os.path.abspath(playerPath[i]),
                    stdin=subprocess.PIPE, stdout=subprocess.PIPE))
 
@@ -53,3 +53,17 @@ while True:
     elif verdictData['action'] == 'error':
         print "Verdict: Error (%s) " % verdictData['errorMessage']
         break
+
+(out, err) = verdict.communicate()
+if out != None and out != "": 
+    print "Verdict stdout: %s" % out
+if err != None and err != "":
+    print "Verdict stderr: %s" % err
+
+for i in xrange(0, playerNumber): 
+    players[i].kill()
+    (out, err) = players[i].communicate()
+    if out != None and out != "": 
+        print "P%d stdout: %s" % (i, out)
+    if err != None and err != "":  
+        print "P%d stderr: %s" % (i, err)
